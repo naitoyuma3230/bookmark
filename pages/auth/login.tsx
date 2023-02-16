@@ -1,6 +1,6 @@
-import { getProviders, signIn } from 'next-auth/react';
-import { InferGetServerSidePropsType } from 'next';
-import Image from 'next/image';
+import { getProviders, signIn } from 'next-auth/react'
+import { InferGetServerSidePropsType } from 'next'
+import Image from 'next/image'
 
 // login-UIにpropsとして渡し、providerの数だけ対応したUIを生成
 const login = ({
@@ -29,7 +29,7 @@ const login = ({
                       // callbackUrlにこちらにリダイレクトした際のルートを設定する。
                       onClick={() =>
                         signIn(provider.id, {
-                          callbackUrl: '/',
+                          callbackUrl: '/articles',
                         })
                       }
                     >
@@ -39,23 +39,23 @@ const login = ({
                       </span>
                     </button>
                   </div>
-                );
+                )
               })}
           </div>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default login;
+export default login
 
 // providersオブジェクトの形で認証方法を取得(複数も可)
 export const getServerSideProps = async () => {
   // ここで、認証の方法を取得しています
   // 今回は、GitHub による認証だけですが、複数の認証方法（Google・Twitterなど）を取得することが出来ます
-  const providers = await getProviders();
+  const providers = await getProviders()
   return {
     props: { providers },
-  };
-};
+  }
+}

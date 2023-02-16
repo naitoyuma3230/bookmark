@@ -1,9 +1,9 @@
-import Link from 'next/link';
-import { signIn, signOut, useSession } from 'next-auth/react';
+import Link from 'next/link'
+import { signIn, signOut, useSession } from 'next-auth/react'
 
 export const Header = () => {
   // Cookieからsession認証情報を取得
-  const { data: session, status } = useSession();
+  const { data: session, status } = useSession()
   return (
     <>
       <div className='bg-gray-900'>
@@ -20,7 +20,7 @@ export const Header = () => {
               <ul className='list-reset flex flex-1 items-center justify-center lg:flex-none'>
                 <li className='py-1 px-4 text-white no-underline'>
                   <Link href='/articles'>
-                    <a>Articles</a>
+                    <div>Articles</div>
                   </Link>
                 </li>
                 {status !== 'loading' && session && (
@@ -33,7 +33,7 @@ export const Header = () => {
                     </li>
                     <li className='py-1 px-4 text-white no-underline'>
                       <button onClick={() => signOut()}>
-                        <a>Log out</a>
+                        <div>Log out</div>
                       </button>
                     </li>
                   </>
@@ -52,5 +52,5 @@ export const Header = () => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
