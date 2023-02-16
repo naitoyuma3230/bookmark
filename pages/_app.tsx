@@ -10,8 +10,8 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <SessionProvider session={pageProps.session}>
       <AuthWrapper>
-        <Header />;
-        <Component {...pageProps} />;
+        <Header />
+        <Component {...pageProps} />
       </AuthWrapper>
     </SessionProvider>
   )
