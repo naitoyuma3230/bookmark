@@ -50,10 +50,10 @@ model User {
   image         String?
   createdAt     DateTime  @default(now()) @map(name: "created_at")
   updatedAt     DateTime  @updatedAt @map(name: "updated_at")
-  // bookmarks     Article[]
+  bookmarks     Article[]
   accounts      Account[] 
   sessions      Session[]
-  posts         Article[]
+  // posts         Article[]
 
   @@map(name: "users")
 }
@@ -71,9 +71,9 @@ model Article {
   id        Int     @id @default(autoincrement())
   title     String
   content   String
-  // users     User[]
-  author    User @relation(fields: [authorId], references: [id])
-  authorId  Int
+  users     User[]
+  // author    User @relation(fields: [authorId], references: [id])
+  // authorId  Int
 
   @@map("articles")
 }
