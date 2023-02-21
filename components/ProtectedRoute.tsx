@@ -18,7 +18,6 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
     }
   }, [router, status])
 
-  //
   if (status === 'unauthenticated') return null
 
   // 引数のchildren:ReactNodeをリターン

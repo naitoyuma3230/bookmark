@@ -12,7 +12,7 @@ export const Header = () => {
             <div className='flex w-full justify-center font-extrabold text-white lg:w-1/2 lg:justify-start'>
               <Link href='/'>
                 <div className='text-2xl text-gray-900 no-underline hover:text-gray-900 hover:no-underline'>
-                  🚀 &nbsp; <span className=' text-gray-200'>BUKUMA</span>
+                  <span className=' text-gray-200'>BUKUMA</span>
                 </div>
               </Link>
             </div>
@@ -29,6 +29,11 @@ export const Header = () => {
                     <li className='py-1 px-4 text-white no-underline'>
                       <Link href='/mypage'>
                         <div>MyPage</div>
+                      </Link>
+                    </li>
+                    <li className='py-1 px-4 text-white no-underline'>
+                      <Link href='/post'>
+                        <div>Post Article</div>
                       </Link>
                     </li>
                     <li className='py-1 px-4 text-white no-underline'>

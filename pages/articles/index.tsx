@@ -40,7 +40,7 @@ export default Articles
 
 export const getStaticProps: GetStaticProps = async () => {
   const articles = await prisma.article.findMany()
-  console.log(articles)
+  // console.log(articles)
   return {
     props: { articles },
   }

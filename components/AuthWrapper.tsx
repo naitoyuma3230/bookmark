@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/react'
 import ProtectedRoute from './ProtectedRoute'
 
-const authRoutes = ['/mypage', '/articles/[id]']
+const authRoutes = ['/mypage', '/articles/[id]', '/post']
 
 // 指定されたルートのページを認証保護のための<Protected>コンポーネントに入れる
 const AuthWrapper = ({ children }: { children: React.ReactNode }) => {
