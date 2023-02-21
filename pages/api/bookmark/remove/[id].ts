@@ -13,7 +13,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
       data: {
         users: {
           // ブックマークを追加する API と異なるのはこの部分だけです
-          // disconnect とすることで、記事とユーザの紐付けを削除することができます
+          // disconnect とすることで、記事とユーザの紐付けを削除する
           disconnect: { email: session?.user?.email },
         },
       },
