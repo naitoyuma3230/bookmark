@@ -53,7 +53,7 @@ model User {
   bookmarks     BookmarkOnUsers[]
   accounts      Account[] 
   sessions      Session[]
-  posts         Article[]
+  article       Article[]
 
   @@map(name: "users")
 }
@@ -72,17 +72,17 @@ model Article {
   title     String
   content   String
   users     BookmarkOnUsers[]
-  author    User @relation(fields: [authorId], references: [id])
-  authorId  Int
+  author    User? @relation(fields: [authorId], references: [id])
+  authorId  Int?
 
   @@map("articles")
 }
 
 model BookmarkOnUsers{
   bookmark         User    @relation(fields: [bookmarkUserId], references: [id])
-  bookmarkUserId   Int
+  bookmarkUserId   Int      
   Articles         Article @relation(fields: [ArticleId], references: [id])
-  ArticleId        Int
+  ArticleId        Int      
 
   @@id([bookmarkUserId, ArticleId])
 }
