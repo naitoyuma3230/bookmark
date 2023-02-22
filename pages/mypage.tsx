@@ -32,15 +32,17 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
     where: {
       users: {
         some: {
-          email: session.user?.email as string,
+          // bookmarkOnUserをarticleIdに紐づくbookmarkUserIdで絞り込んでいる
+          // emailで検索したいが更に
+          id: session.user?.id as number,
         },
       },
     },
-
     include: {
       users: true,
     },
   })
+  console.log(data)
   const articles = JSON.parse(JSON.stringify(data))
   return {
     props: { articles },

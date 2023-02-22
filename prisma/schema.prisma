@@ -79,9 +79,9 @@ model Article {
 }
 
 model BookmarkOnUsers{
-  bookmark         User    @relation(fields: [bookmarkUserId], references: [id])
+  bookmark         User?    @relation(fields: [bookmarkUserId], references: [id])
   bookmarkUserId   Int      
-  Articles         Article @relation(fields: [ArticleId], references: [id])
+  Articles         Article? @relation(fields: [ArticleId], references: [id])
   ArticleId        Int      
 
   @@id([bookmarkUserId, ArticleId])
