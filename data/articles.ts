@@ -3,11 +3,13 @@ export const articles = [
     title: 'Latest Updates on React 18',
     content:
       'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using',
+    authorId: 1,
   },
   {
     title: 'How To Use Contexts in Go',
     content:
       'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
+    authorId: 1,
   },
   {
     title: 'Introduction to GraphQL',
@@ -18,6 +20,7 @@ export const articles = [
     title: 'Using Next.js with TypeScript',
     content:
       'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which do not look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there is not anything embarrassing hidden in the middle of text.',
+    authorId: 1,
   },
   {
     title: 'Getting started with Lambda',
