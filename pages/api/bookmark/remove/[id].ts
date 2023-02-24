@@ -6,16 +6,14 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
   const session = await getSession({ req })
 
   if (session?.user?.email) {
-    const result = await prisma.article.update({
+    const result = await prisma.bookmarkOnUsers.deleteMany({
       where: {
-        id: Number(req.query.id),
-      },
-      data: {
-        users: {
-          // ブックマークを追加する API と異なるのはこの部分だけです
-          // disconnect とすることで、記事とユーザの紐付けを削除する
-          disconnect: { email: session?.user?.email },
-        },
+        AND: [
+          {
+            bookmarkUserId: session.user?.id as number,
+            ArticleId: Number(req.query.id),
+          },
+        ],
       },
     })
     res.json(result)

@@ -10,14 +10,18 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
   // session オブジェクトに email が存在しているかを判定
   // users テーブルの email カラムは必須
   if (session?.user?.email) {
-    const result = await prisma.article.update({
+    const loginUser = await prisma.user.findUnique({
       where: {
-        id: Number(req.query.id),
+        email: session.user?.email as string,
       },
+      select: {
+        id: true,
+      },
+    })
+    const result = await prisma.bookmarkOnUsers.create({
       data: {
-        users: {
-          connect: { email: session?.user?.email },
-        },
+        ArticleId: Number(req.query.id),
+        bookmarkUserId: loginUser?.id as number,
       },
     })
     res.json(result)

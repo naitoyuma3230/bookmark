@@ -80,6 +80,17 @@ export const getServerSideProps: GetServerSideProps = async ({
     res.statusCode = 403
     return { props: { article: null } }
   }
+
+  // リレーション先の情報が取得できず原始的な方法で実行
+  const loginUserId = await prisma.user.findUnique({
+    where: {
+      email: session.user?.email as string,
+    },
+    select: {
+      id: true,
+    },
+  })
+
   const data = await prisma.article.findUnique({
     where: {
       id: Number(params?.id),
@@ -90,9 +101,11 @@ export const getServerSideProps: GetServerSideProps = async ({
   })
 
   const article = JSON.parse(JSON.stringify(data))
-  const isBookmarked = article.users.some(
-    (user: User) => user.email === session.user?.email
-  )
+  // console.log(article)
+  const isNotBookmarked = article.users.every((bookmarkOnUser: any) => {
+    return bookmarkOnUser.bookmarkUserId !== loginUserId?.id
+  })
+  const isBookmarked = !isNotBookmarked
   return {
     props: { article, isBookmarked },
   }

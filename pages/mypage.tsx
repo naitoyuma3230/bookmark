@@ -27,22 +27,35 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
     res.statusCode = 401
     return { props: { articles: null } }
   }
-
-  const data = await prisma.article.findMany({
+  const loginUser = await prisma.user.findUnique({
     where: {
-      users: {
-        some: {
-          // bookmarkOnUserをarticleIdに紐づくbookmarkUserIdで絞り込んでいる
-          // emailで検索したいが更に
-          id: session.user?.id as number,
-        },
-      },
-    },
-    include: {
-      users: true,
+      email: session.user?.email as string,
     },
   })
-  console.log(data)
+
+  const bookmarkedArticlesbyUser = await prisma.bookmarkOnUsers.findMany({
+    where: {
+      bookmarkUserId: loginUser?.id,
+    },
+    include: {
+      Articles: true,
+      bookmark: true,
+    },
+  })
+  // console.log(bookmarkedArticlesbyUser)
+
+  const data = bookmarkedArticlesbyUser.map((bookmarkedArticle) => {
+    const users = []
+    users.push(bookmarkedArticle.bookmark)
+
+    const ret = {
+      ...bookmarkedArticle.Articles,
+      users: users,
+    }
+    return ret
+  })
+
+  // console.log(data)
   const articles = JSON.parse(JSON.stringify(data))
   return {
     props: { articles },
