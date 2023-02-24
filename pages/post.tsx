@@ -32,8 +32,8 @@ const Post = () => {
     <div className='m-20'>
       <form>
         <div className='mb-6'>
-          <label className='block mb-2 text-sm font-medium text-gray-900 '>
-            title
+          <label className='block mb-2 text-lg font-medium text-gray-900 '>
+            TITLE
           </label>
           <input
             className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500'
@@ -44,8 +44,8 @@ const Post = () => {
           />
         </div>
         <div className='mb-6'>
-          <label className='block mb-2 text-sm font-medium text-gray-900'>
-            Contet
+          <label className='block mb-2 text-lg font-medium text-gray-900'>
+            CONTENT
           </label>
           <textarea
             className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500'
@@ -63,7 +63,7 @@ const Post = () => {
             addArticle()
           }}
         >
-          Submit
+          POST
         </button>
       </form>
     </div>
