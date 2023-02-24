@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import prisma from '../../../lib/prisma'
+import prisma from '../../../../lib/prisma'
 import { getSession } from 'next-auth/react'
 
 // res, reqを引数にもつ関数を定義する
@@ -9,22 +9,13 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 
   // session オブジェクトに email が存在しているかを判定
   // users テーブルの email カラムは必須
-  if (session?.user?.email && req.body.title && req.body.content) {
-    const loginUser = await prisma.user.findUnique({
+  if (session?.user?.email) {
+    const result = await prisma.article.delete({
       where: {
-        email: session.user?.email as string,
-      },
-      select: {
-        id: true,
+        id: Number(req.query.id),
       },
     })
-    const result = await prisma.article.create({
-      data: {
-        title: req.body.title,
-        content: req.body.content,
-        authorId: loginUser?.id,
-      },
-    })
+    console.log(req.query.id)
     res.json(result)
   } else {
     res.status(401).send({ message: 'Unauthorized or FormEmpty' })
